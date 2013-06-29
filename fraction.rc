@@ -1,0 +1,7 @@
+#[crate_type = "lib"];
+#[link(name = "fractions",
+       vers = "0.1",
+       author = "42",
+       time = "2013.6.29")];
+
+pub mod fraction;
