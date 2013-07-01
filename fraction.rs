@@ -8,7 +8,11 @@ priv struct fraction{
 
 impl fraction {
 	priv fn gcd(&mut self)->fraction{
-		let mut (x,y) = (self.x,self.y);
+		let mut x = self.x;
+		let mut y = self.y;
+
+		// let mut (x,y) = (self.x,self.y);
+
 		while x % y != 0{
 		let z = x % y;
 			x=y;
@@ -45,17 +49,26 @@ trait To_Decimal{
 	fn to_decimal(&self)->fraction;
 }
 
-impl To_Decimal for uint{
-	fn to_decimal(&self)->fraction{
-		fraction{x:*self as int,y:1}
+macro_rules! impl_decimal(
+	($x:ident) => (
+		impl To_Decimal for $x{
+			fn to_decimal(&self)->fraction{
+			fraction{x:*self as int,y:1}
+		}
 	}
-}
+	)
+)
 
-impl To_Decimal for int{
-	fn to_decimal(&self)->fraction{
-		fraction{x:*self,y:1}
-	}
-}
+impl_decimal!(int)
+impl_decimal!(i8)
+impl_decimal!(i16)
+impl_decimal!(i32)
+impl_decimal!(i64)
+impl_decimal!(uint)
+impl_decimal!(u8)
+impl_decimal!(u16)
+impl_decimal!(u32)
+impl_decimal!(u64)
 
 impl To_Decimal for fraction {
 	fn to_decimal(&self)->fraction{
