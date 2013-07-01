@@ -1,6 +1,6 @@
 #[crate_type = "lib"];
 #[link(name = "fractions",
-       vers = "0.1",
+       vers = "0.2",
        author = "42",
        time = "2013.6.29")];
 
